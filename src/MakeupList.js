@@ -24,20 +24,16 @@ function MakeupList() {
 
   useEffect(() => {
     fetchUrl();
-  }, brand);
+  }, []);
   return (
     <>
       <div className="top-section">
         {brands.map((brand) => {
           return (
             <button
-              onClick={(brand) => {
-                const newArr = brands.filter((item) => {
-                  return item === brand;
-                });
-                setItems(() => {
-                  return newArr;
-                });
+              onClick={(brand, index) => {
+                console.log(index);
+                setValue(index);
               }}
             >
               {brand}
