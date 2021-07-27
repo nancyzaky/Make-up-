@@ -1,3 +1,42 @@
+:root {
+  /* dark shades of primary color*/
+  --clr-primary-1: hsl(21, 91%, 17%);
+  --clr-primary-2: hsl(21, 84%, 25%);
+  --clr-primary-3: hsl(21, 81%, 29%);
+  --clr-primary-4: hsl(21, 77%, 34%);
+  --clr-primary-5: hsl(21, 62%, 45%);
+  --clr-primary-6: hsl(21, 57%, 50%);
+  --clr-primary-7: hsl(21, 65%, 59%);
+  --clr-primary-8: hsl(21, 80%, 74%);
+  --clr-primary-9: hsl(21, 94%, 87%);
+  --clr-primary-10: hsl(21, 100%, 94%);
+  /* darkest grey - used for headings */
+  --clr-grey-1: hsl(209, 61%, 16%);
+  --clr-grey-2: hsl(211, 39%, 23%);
+  --clr-grey-3: hsl(209, 34%, 30%);
+  --clr-grey-4: hsl(209, 28%, 39%);
+  /* grey used for paragraphs */
+  --clr-grey-5: hsl(210, 22%, 49%);
+  --clr-grey-6: hsl(209, 23%, 60%);
+  --clr-grey-7: hsl(211, 27%, 70%);
+  --clr-grey-8: hsl(210, 31%, 80%);
+  --clr-grey-9: hsl(212, 33%, 89%);
+  --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-white: #fff;
+  --clr-red-dark: hsl(360, 67%, 44%);
+  --clr-red-light: hsl(360, 71%, 66%);
+  --clr-green-dark: hsl(125, 67%, 44%);
+  --clr-green-light: hsl(125, 71%, 66%);
+  --clr-black: #222;
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -24,9 +63,6 @@ code {
 }
 
 .makeup-list {
-  /* display: flex;
-  flex-wrap: wrap;
-  flex-grow: inherit; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
@@ -40,22 +76,31 @@ code {
   gap: 3rem;
   align-content: flex-start;
   padding-right: 3rem;
+  height: 800px;
+}
+.pick-btn {
+  width: 40px;
+  height: 20px;
+  background-color: white;
 }
 
 .btn {
   gap: inherit;
-  margin-bottom: 5rem;
+  margin-bottom: 0.5rem;
   border-radius: 5rem;
-  color: pink;
   height: 40px;
   width: 150px;
-  background-color: black;
-  color: white;
   font-weight: bold;
-  box-shadow: blanchedalmond;
+  color: white;
+  background-color: black;
 }
 .btn:hover {
   box-sizing: inherit;
+}
+.fav-pick-header {
+  align-content: center;
+  text-align: center;
+  margin-top: 5rem;
 }
 
 .header {
@@ -70,7 +115,7 @@ code {
   gap: 2rem;
 }
 
-.nav-bar {
+/* .nav-bar {
   height: 100px;
   max-width: inherit;
   border: 0.1rem solid black;
@@ -78,7 +123,7 @@ code {
   color: white;
   font-weight: bold;
   flex-direction: row-reverse;
-}
+} */
 .tag {
   color: white;
   font-weight: bold;
@@ -87,4 +132,319 @@ code {
   padding-right: 4rem;
 
   padding-left: 12rem;
+}
+.header-photo {
+  height: fit-content;
+  width: max-content;
+  margin-left: 5rem;
+}
+/*
+.images-div {
+  align-content: center;
+  height: 600px;
+  width: 300px;
+  text-align: center;
+} */
+.section-center {
+  position: relative;
+  overflow: hidden;
+  width: 80vw;
+  height: 450px;
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 4rem;
+  display: flex;
+}
+
+article {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: var(--transition);
+}
+article.activeSlide {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.1s;
+}
+article.nextSlide {
+  transform: translateX(100%);
+  transition: all 0s;
+}
+article.prevSlide {
+  transform: translateX(-100%);
+  transition: all 0s;
+}
+#pick-btn-div {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.picks-btn {
+  align-content: center;
+  margin-left: 28rem;
+}
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  align-content: flex-end;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-right: 3rem;
+  /* border: 0.3rem solid white; */
+  /* background-image: url("https://thumbs.dreamstime.com/b/makeup-products-cosmetics-spilling-out-to-pastel-peach-color-background-flat-lay-top-view-copy-space-female-make-up-makeup-172135373.jpg"); */
+  /* border-radius: 2rem; */
+}
+.menu {
+  padding-right: 3rem;
+}
+
+/* .nav-bar-list {
+  padding-top: 10px;
+  display: flex;
+  list-style-type: none;
+  padding: 50px;
+} */
+
+/* .nav-bar-list > li {
+  position: relative;
+  display: flex;
+  list-style-type: none;
+} */
+
+.dropdown {
+  opacity: 0;
+  position: absolute;
+  overflow: hidden;
+  padding: 20px;
+  top: -20px;
+  border-radius: 4rem;
+  transition: all 0.5s;
+  transform: translateY(100px);
+  will-change: transform;
+  display: none;
+  padding-top: 30px;
+  color: black;
+}
+.background {
+  position: absolute;
+  background: var(--clr-white);
+  transform-origin: 50% 0%;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s, opacity 0.1, translate 0.2s;
+  opacity: 0;
+}
+.open-back {
+  position: absolute;
+  background: var(--clr-white);
+  transform-origin: 50% 0%;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s, opacity 0.1, translate 0.2s;
+  opacity: 1;
+}
+.open-dropdown {
+  opacity: 0;
+  position: absolute;
+  /* overflow: hidden; */
+  padding: 20px;
+  top: -20px;
+  border-radius: 4rem;
+  transition: all 0.5s;
+  transform: translateY(100px);
+  will-change: transform;
+  display: block;
+  padding-top: 30px;
+  color: black;
+}
+.open-dropdown-active {
+  opacity: 1;
+  position: absolute;
+  overflow: hidden;
+  padding: 20px;
+  top: -20px;
+  border-radius: 4rem;
+  transition: all 0.5s;
+  transform: translateY(100px);
+  will-change: transform;
+  display: block;
+  padding-top: 30px;
+  color: black;
+}
+
+/* //, opacity 0.1, translate 0.2s; */
+
+.footer-container {
+  background-color: black;
+  align-content: center;
+  height: 300px;
+  text-align: center;
+  /* position: absolute; */
+}
+
+.footer-list {
+  padding-top: 20px;
+  display: flex;
+  list-style-type: none;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 30px;
+  text-align: center;
+  margin: 0 auto;
+}
+.footer-list > li {
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  padding-right: 5rem;
+  align-content: center;
+}
+.social-icons :hover {
+  color: red;
+}
+.menu-items-container {
+  align-content: flex-start;
+  overflow: hidden;
+  transition: var(--transition);
+  height: 0;
+}
+.menu-items {
+  /* padding: 2rem; */
+  display: flex;
+  color: white;
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  display: block;
+  transition: var(--transition);
+  align-content: center;
+  justify-content: center;
+}
+
+.menu-items {
+  display: grid;
+  padding-left: 1%;
+}
+.menu-item {
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  list-style-type: none;
+}
+.menu-item :hover {
+  color: red;
+}
+.nav-bar {
+  background-color: black;
+  height: max-content;
+}
+.nav-header {
+  display: grid;
+  /* margin: 0 auto; */
+}
+.nav-toggle {
+  font-size: 2.5rem;
+  color: white;
+  background: transparent;
+  border-color: transparent;
+  transition: var(--transition);
+  /* cursor: pointer; */
+  color: #fff;
+  padding-bottom: 1rem;
+}
+.nav-toggle:hover {
+  color: var(--clr-red-dark);
+  transform: rotate(360deg);
+  cursor: pointer;
+}
+
+.brands-header {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  text-align: center;
+  margin-left: 50%;
+}
+
+.brands {
+  height: 150px;
+  background-color: plum;
+}
+
+.brands-cont {
+  height: 0px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.brands-list {
+  display: grid;
+  list-style-type: none;
+  padding-left: 14rem;
+  height: auto;
+  font-weight: bold;
+}
+.brands-list > li :hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.info {
+  list-style-type: none;
+  display: grid;
+}
+.info > li {
+  list-style-type: none;
+  padding-bottom: 2rem;
+  align-content: center;
+}
+
+.signup-form {
+  display: flex;
+  align-content: center;
+  margin-left: 1.5rem;
+  width: 400px;
+  align-items: center;
+}
+
+input[type="text"],
+input[type="name"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
+
+.cart-bg {
+  background-color: black;
+
+  background-image: url("https://images.unsplash.com/photo-1522338242992-e1a54906a8da?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFrZSUyMHVwJTIwcHJvZHVjdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
+  background-repeat: no-repeat;
+  margin-bottom: 0;
+  padding-top: 5rem;
+  padding-left: 50%;
+  background-size: cover;
+  height: 1000px;
+  align-items: center;
+  justify-content: center;
+}
+.cart-page {
+  text-align: center;
+  justify-content: center;
+  /* margin-right: 40rem; */
+  border: honeydew 0.2rem solid;
+}
+.menu {
+  padding: 2rem auto;
 }

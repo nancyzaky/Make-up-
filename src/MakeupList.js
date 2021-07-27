@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Loading from "./Loading";
 import Card from "./Card";
 import brands from "./data";
 import Button from "./Button";
+import picsUrl from "./pics";
+import Cart from "./Cart";
 
-function MakeupList() {
+function MakeupList(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
-  const [value, setValue] = useState(43);
-  const [brand, setBrand] = useState(brands[value]);
+  const [cart, setCart] = useState([]);
+
+  const [brand, setBrand] = useState(brands[42]);
 
   const fetchUrl = () => {
     fetch(
@@ -24,26 +27,29 @@ function MakeupList() {
 
   useEffect(() => {
     fetchUrl();
-  }, []);
+  }, [brand]);
+
   return (
-    <>
-      <div className="top-section">
-        {brands.map((brand) => {
+    <div className={props.className}>
+      <div className="menu-container">
+        {brands.map((item, index) => {
           return (
-            <button
-              onClick={(brand, index) => {
-                console.log(index);
-                setValue(index);
-              }}
-            >
-              {brand}
-            </button>
+            <Button
+              name={item}
+              key={index}
+              index={index}
+              setBrand={setBrand}
+              brands={brands}
+              photo={picsUrl[index]}
+            />
           );
         })}
       </div>
+      <h1 style={{ "text-align": "center" }}>{brand}</h1>
+      <div className="top-section"></div>
       <main className="container">
         <section className="makeup-list">
-          {isLoading ? <Loading /> : null}
+          {/* {isLoading ? <Loading /> : null} */}
           {items.map((item) => {
             const {
               description,
@@ -53,17 +59,23 @@ function MakeupList() {
               product_colors,
               product_type,
             } = item;
-            // console.log(item);
             return (
-              <div className="item">
-                <Card key={item.key} item={item} />
-                {/* <Button name={name} /> */}
+              <div>
+                <ul className="item">
+                  <Card
+                    key={item.key}
+                    item={item}
+                    cart={cart}
+                    setCart={setCart}
+                  />
+                  {/* <Button name={name} /> */}
+                </ul>
               </div>
             );
           })}
         </section>
       </main>
-    </>
+    </div>
   );
 }
 
