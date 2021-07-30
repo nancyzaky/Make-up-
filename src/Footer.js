@@ -6,7 +6,9 @@ function Footer() {
     <>
       <footer className="footer-container">
         <div className="social-icons">
-          <h2 style={{ color: "white" }}>Our Social Media </h2>
+          <h2 style={{ color: "white", "padding-top": "1rem" }}>
+            Our Social Media{" "}
+          </h2>
           <ul className="footer-list">
             {Contact.map((contact) => {
               const { id, text, url } = contact;

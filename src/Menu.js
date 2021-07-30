@@ -7,8 +7,8 @@ function Menu() {
   console.log(brandContainer);
 
   useEffect(() => {
-    // const currentHeight = brandsList.current.getBoundingClientRect().height;
-    //console.log(currentHeight);
+    const currentHeight = brandsList.current.getBoundingClientRect().height;
+    console.log(currentHeight);
     if (show) {
       brandContainer.current.style.height = `800px`;
     } else {

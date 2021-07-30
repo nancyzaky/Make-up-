@@ -55,11 +55,11 @@ code {
   margin: 5rem;
 }
 .container {
-  width: 100vw;
+  /* width: 100vw; */
   margin: 0 auto;
   max-width: 1170px;
   align-content: center;
-  margin-right: inherit;
+  /* margin-right: inherit; */
 }
 
 .makeup-list {
@@ -67,16 +67,21 @@ code {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
   align-content: center;
-  width: 1170px;
+  /* width: 1170px; */
 }
 
 .item {
   flex-basis: 15%;
   flex-grow: 3;
-  gap: 3rem;
-  align-content: flex-start;
-  padding-right: 3rem;
-  height: 800px;
+  gap: 2rem;
+  align-content: center;
+  list-style-type: none;
+  max-height: max-content;
+  display: grid;
+}
+.card {
+  display: grid;
+  align-content: center;
 }
 .pick-btn {
   width: 40px;
@@ -93,6 +98,11 @@ code {
   font-weight: bold;
   color: white;
   background-color: black;
+  margin-top: 0.75rem;
+}
+.photo {
+  width: 200px;
+  height: 200px;
 }
 .btn:hover {
   box-sizing: inherit;
@@ -115,7 +125,7 @@ code {
   gap: 2rem;
 }
 
-/* .nav-bar {
+.nav-bar {
   height: 100px;
   max-width: inherit;
   border: 0.1rem solid black;
@@ -123,7 +133,7 @@ code {
   color: white;
   font-weight: bold;
   flex-direction: row-reverse;
-} */
+}
 .tag {
   color: white;
   font-weight: bold;
@@ -192,11 +202,13 @@ article.prevSlide {
   flex-direction: row;
   flex-wrap: wrap;
   text-align: center;
-  align-content: flex-end;
+  /* align-content: flex-end; */
   justify-content: center;
   padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-right: 3rem;
+  padding-bottom: 2.5rem;
+  padding-left: 2.3rem;
+  flex-basis: 15%;
+  flex-grow: 3;
   /* border: 0.3rem solid white; */
   /* background-image: url("https://thumbs.dreamstime.com/b/makeup-products-cosmetics-spilling-out-to-pastel-peach-color-background-flat-lay-top-view-copy-space-female-make-up-makeup-172135373.jpg"); */
   /* border-radius: 2rem; */
@@ -205,19 +217,23 @@ article.prevSlide {
   padding-right: 3rem;
 }
 
-/* .nav-bar-list {
+.nav-bar-list {
   padding-top: 10px;
   display: flex;
   list-style-type: none;
   padding: 50px;
-} */
+}
 
-/* .nav-bar-list > li {
+.nav-bar-list > li {
   position: relative;
   display: flex;
   list-style-type: none;
-} */
-
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
 .dropdown {
   opacity: 0;
   position: absolute;
@@ -253,7 +269,7 @@ article.prevSlide {
 .open-dropdown {
   opacity: 0;
   position: absolute;
-  /* overflow: hidden; */
+  overflow: hidden;
   padding: 20px;
   top: -20px;
   border-radius: 4rem;
@@ -310,34 +326,27 @@ article.prevSlide {
   color: red;
 }
 .menu-items-container {
-  align-content: flex-start;
   overflow: hidden;
   transition: var(--transition);
   height: 0;
-}
-.menu-items {
-  /* padding: 2rem; */
-  display: flex;
-  color: white;
-  font-size: 1rem;
-  text-transform: capitalize;
-  letter-spacing: var(--spacing);
-  display: block;
-  transition: var(--transition);
-  align-content: center;
-  justify-content: center;
+  padding-bottom: 1.3rem;
 }
 
-.menu-items {
-  display: grid;
-  padding-left: 1%;
-}
 .menu-item {
-  position: relative;
   text-decoration: none;
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
   list-style-type: none;
+  display: grid;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  border-bottom: none;
+  transition: var(--transition);
+  padding-bottom: 2rem;
+}
+
+.tag {
+  border-bottom: none;
+  text-decoration: none;
 }
 .menu-item :hover {
   color: red;
@@ -444,7 +453,4 @@ input[type="password"] {
   justify-content: center;
   /* margin-right: 40rem; */
   border: honeydew 0.2rem solid;
-}
-.menu {
-  padding: 2rem auto;
 }

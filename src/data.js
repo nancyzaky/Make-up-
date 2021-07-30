@@ -17,7 +17,6 @@ const brands = [
   "iman",
   "l'oreal",
   "lotus cosmetics usa",
-  "maia's mineral galaxy",
   "marcelle",
   "marienatie",
   "maybelline",
@@ -34,16 +33,13 @@ const brands = [
   "pure anada",
   "rejuva minerals",
   "revlon",
-  "sally b's skin yummies",
   "sante",
   "sinful colours",
   "smashbox",
   "stila",
   "suncoat",
-  "w3llpeople",
   "wet n wild",
   "zorah",
-  "zorah biocosmetiques",
 ];
 
 export default brands;

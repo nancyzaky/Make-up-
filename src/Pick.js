@@ -50,24 +50,28 @@ function Pick() {
         })}
       </div>
       <div id="pick-btn-div">
-        <button
+        <a
           className="picks-btn"
           onClick={() => {
             console.log("click");
             setIndex(index - 1);
           }}
         >
-          <GrPrevious className="pick-btn"></GrPrevious>
-        </button>
-        <button
+          <span>
+            <GrPrevious className="pick-btn"></GrPrevious>
+          </span>
+        </a>
+        <a
           className="picks-btn"
           onClick={() => {
             console.log("clicked");
             setIndex(index + 1);
           }}
         >
-          <GrNext className="pick-btn"></GrNext>
-        </button>
+          <span>
+            <GrNext className="pick-btn"></GrNext>
+          </span>
+        </a>
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import picsUrl from "./pics";
-//import { Link } from "react-router-dom";
 
 function Button(props) {
   const { name, setBrand, brands, index, photo } = props;
