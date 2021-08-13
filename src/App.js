@@ -11,6 +11,10 @@ import Card from "./Card";
 import Error from "./Error";
 import Navb from "./Navb";
 import Footer from "./Footer";
+import Brand from "./Brand";
+import SearchResult from "./SearchResult";
+import ScrollToTop from "./ScrollToTop";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,30 +24,59 @@ import {
 
 const getStorage = () => {
   const list = localStorage.getItem("cart");
+  console.log(list);
   if (list) {
     return JSON.parse(localStorage.getItem("cart"));
   }
 };
 
 function App() {
-  const [cart, setCart] = useState(getStorage() || []);
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  const [cart, setCart] = useState([]);
 
+  // const [cart, setCart] = useState(getStorage() || []);
+  // useEffect(() => {
+  //   localStorage.setItem("cart", JSON.stringify(cart));
+  // }, [cart]);
+  const [count, setCount] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/cart")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setCount(data.length);
+      });
+  }, []);
   return (
     <>
-      <Navb />
+      <Navb count={count} setCount={setCount} />
+      <ScrollToTop />
 
       <Switch>
         <Route
           exact
           path="/"
-          render={() => <MainApp cart={cart} setCart={setCart} />}
+          render={() => <MainApp />}
+          // cart={cart} setCart={setCart} />}
         />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/mycart" render={() => <Cart cart={cart} />} />
+        <Route
+          path="/mycart"
+          render={() => (
+            <Cart
+              count={count}
+              setCount={setCount}
+              cart={cart}
+              setCart={setCart}
+            />
+          )}
+        />
+        <Route path="/mybrand/:id">
+          <Brand brands={brands} count={count} setCount={setCount} />
+        </Route>
+        <Route path="/search">
+          <SearchResult />
+        </Route>
         <Route path="*" component={Error} />
       </Switch>
 
@@ -54,7 +87,7 @@ function App() {
 
 export default App;
 
-function MainApp({ cart, setCart }) {
+function MainApp() {
   return (
     <>
       <h1 className="header">Makeup Wish List</h1>
@@ -68,7 +101,7 @@ function MainApp({ cart, setCart }) {
         <p>----------</p>
       </section>
       <Pick />
-      <MakeupList cart={cart} setCart={setCart} />
+      <MakeupList />
     </>
   );
 }

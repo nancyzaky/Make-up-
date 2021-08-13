@@ -1,5 +1,4 @@
 const brands = [
-  "almaya",
   "anna sui",
   "annabelle",
 

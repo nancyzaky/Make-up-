@@ -1,0 +1,11 @@
+{
+  "cart": [
+    {
+      "img": "https://d3t32hsnjxo7q6.cloudfront.net/i/9b00f1bed71b9d46399663a8ef364a9a_ra,w158,h184_pa,w158,h184.jpeg",
+      "name": "covergirl",
+      "price": "9.99",
+      "quantity": 1,
+      "id": 2
+    }
+  ]
+}

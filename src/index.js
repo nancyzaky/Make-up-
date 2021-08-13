@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { SearchProvider } from "./SearchContext";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -9,7 +10,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const Routing = () => {
   return (
     <Router>
-      <App />
+      <SearchProvider>
+        <App />
+      </SearchProvider>
     </Router>
   );
 };
@@ -19,4 +22,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-

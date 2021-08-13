@@ -2,15 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineShoppingCart, AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
-import { GiLips } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { GiLips, GiLipstick } from "react-icons/gi";
+import { ImCart } from "react-icons/im";
+import { Link, useHistory } from "react-router-dom";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
-function Navb() {
+function Navb({ count, setCount }) {
   const [show, setShow] = useState(false);
   const divCont = useRef(null);
   const list = useRef(null);
-  console.log(divCont);
-
+  const history = useHistory();
   useEffect(() => {
     // console.log(currentHeight);
 
@@ -30,6 +33,16 @@ function Navb() {
         <h2 className="nav-h" style={{ color: "white" }}>
           Nancy's Cosmetics
         </h2>
+        <div className="shopping-count">
+          <Badge color="secondary" badgeContent={count}>
+            <ShoppingCartIcon
+              style={{ fontSize: "42px" }}
+              onClick={() => {
+                history.push("/mycart");
+              }}
+            />{" "}
+          </Badge>
+        </div>
         <button
           className="nav-toggle"
           onClick={() => {

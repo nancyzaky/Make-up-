@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import picsUrl from "./pics";
 
 function Button(props) {
@@ -6,16 +7,13 @@ function Button(props) {
   return (
     <>
       <div className="menu">
-        <a
-          onClick={(e) => {
-            e.preventDefault();
-            setBrand(brands[index]);
-          }}
-        >
+        <Link to={`/mybrand/${index}`}>
           <h3>{name + " "}</h3>
-        </a>
+        </Link>
         <section>
-          <img src={photo} style={{ height: "300px", width: "300px" }} />
+          <Link to={`/mybrand/${index}`}>
+            <img src={photo} style={{ height: "300px", width: "300px" }} />
+          </Link>
         </section>
       </div>
     </>

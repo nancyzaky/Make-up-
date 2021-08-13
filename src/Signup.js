@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Form, Button, Card, Container } from "react-bootstrap";
 
 // function Signup() {
@@ -30,6 +30,7 @@ import { Form, Button, Card, Container } from "react-bootstrap";
 // }
 
 function Signup() {
+  const history = useHistory();
   const name = useRef();
   const email = useRef();
   const password = useRef();
@@ -40,7 +41,6 @@ function Signup() {
         style={{
           textAlign: "center",
           fontSize: "bold",
-          marginLeft: "45%",
         }}
       >
         Sign Up
@@ -55,7 +55,11 @@ function Signup() {
         >
           <Card>
             <Card.Body>
-              <Form>
+              <Form
+                onSubmit={() => {
+                  history.push("/");
+                }}
+              >
                 <Form.Group id="name">
                   <Form.Label>Name:</Form.Label>
                   <Form.Control type="name" ref={name} required></Form.Control>
