@@ -3,11 +3,9 @@ import { useParams } from "react-router-dom";
 import Card from "./Card";
 import Loading from "./Loading";
 
-const Brand = ({ brands, count, setCount }) => {
-  console.log(count, setCount);
+const Brand = ({ brands, count, setCount, cart, setCart }) => {
   let { id } = useParams();
-  console.log(id);
-  console.log(id, brands);
+
   const [brandName, setBrandName] = useState(brands[id]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,6 +15,7 @@ const Brand = ({ brands, count, setCount }) => {
     )
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data);
         setLoading(false);
         setProducts(data);
       });
@@ -27,12 +26,21 @@ const Brand = ({ brands, count, setCount }) => {
   return (
     <>
       {loading && <Loading />}
-      <h1 style={{ "text-align": "center" }}>{brandName}</h1>
+      <h1 style={{ "text-align": "center" }}>Products</h1>
 
       <div>
         <ul className="item">
           {products.map((product) => {
-            return <Card product={product} count={count} setCount={setCount} />;
+            return (
+              <Card
+                key={product.id}
+                product={product}
+                count={count}
+                setCount={setCount}
+                cart={cart}
+                setCart={setCart}
+              />
+            );
           })}
         </ul>
       </div>

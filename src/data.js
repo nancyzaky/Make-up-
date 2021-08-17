@@ -1,9 +1,7 @@
 const brands = [
   "anna sui",
   "annabelle",
-
   "butter london",
-
   "cargo cosmetics",
   "colourpop",
   "covergirl",
@@ -39,6 +37,7 @@ const brands = [
   "suncoat",
   "wet n wild",
   "zorah",
+  "burt's bees",
 ];
 
 export default brands;

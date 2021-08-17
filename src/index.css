@@ -216,6 +216,9 @@ article.prevSlide {
 }
 .menu {
   padding-right: 3rem;
+  padding-left: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .nav-bar-list {
@@ -307,7 +310,7 @@ a {
 }
 
 .footer-list {
-  padding-top: 20px;
+  /* padding-top: 20px; */
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
@@ -418,12 +421,14 @@ a {
 
 .info {
   list-style-type: none;
-  display: grid;
+  /* display: inline; */
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .info > li {
   list-style-type: none;
-  padding-bottom: 2rem;
-  align-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  font-weight: bold;
 }
 
 .signup-form {
@@ -443,6 +448,7 @@ input[type="password"] {
   margin: 8px 0;
   box-sizing: border-box;
   padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .cart-bg {
@@ -500,14 +506,20 @@ li {
   font-weight: bold;
   background-color: transparent;
 }
+
 .searchForm {
-  background-image: url("https://i.pinimg.com/originals/2a/68/a1/2a68a175ae29b2027100e0b218141a6d.png");
+  margin-left: 30rem;
+  padding-left: 1.5rem;
+  margin-top: 5rem;
+  background-image: url("https://www.teahub.io/photos/full/57-577418_makeup-iphone-wallpaper-hairstyle-and-make-up-pinterest.jpg");
   background-repeat: no-repeat;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   background-position: center;
   height: 700px;
   background-color: white;
+  font-weight: bolder;
+  width: 700px;
 }
 
 .shopping-count {
@@ -518,4 +530,97 @@ li {
 .videos {
   position: absolute;
   display: inline-flex;
+}
+
+.alert {
+  margin-bottom: 1rem;
+  height: 1.75rem;
+  display: grid;
+  /* width: 600px; */
+  align-items: center;
+  text-align: center;
+  font-size: 0.7rem;
+  border-radius: 0.25rem;
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+}
+
+.alert-success {
+  color: green;
+  background: #d4edda;
+}
+.alert-danger {
+  color: red;
+  background: #f8d7da;
+}
+.submenu {
+  /* background: var(--clr-white); */
+  box-shadow: var(--dark-shadow);
+  position: fixed;
+  top: 37rem;
+  left: 50%;
+  height: 90px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: none;
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: var(--transition);
+  background-color: white;
+  color: white;
+  background-color: grey;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+}
+.submenu::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid grey;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.submenu.show {
+  display: block;
+}
+.col-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+.col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.col-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.submenu-center {
+  display: grid;
+  gap: 0.25rem 2rem;
+}
+.btn:hover {
+  color: red;
+}
+.shade {
+  color: black;
+  height: 3rem;
+  width: 9rem;
+  text-align: center;
+  border: 0.2rem solid lightblue;
+  border-radius: 2rem;
+  background-color: transparent;
+}
+.commentsbg {
+  background-image: url("https://img.freepik.com/free-vector/blank-light-grey-blurred-background-with-radial-gradient_53562-6788.jpg?size=626&ext=jpg");
+  height: 500px;
+}
+.shad {
+  background: #eee;
+  box-shadow: 0 10px 10px -4px lightblue;
 }

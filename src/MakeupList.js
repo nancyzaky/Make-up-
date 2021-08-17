@@ -5,7 +5,7 @@ import brands from "./data";
 import Button from "./Button";
 import picsUrl from "./pics";
 import Cart from "./Cart";
-
+import Comments from "./Comments";
 import SearchForm from "./SearchForm";
 import {
   BrowserRouter as Router,
@@ -58,9 +58,11 @@ function MakeupList(props) {
         <div>
           <SearchForm />
         </div>
-        <section>
-          <Video className="videos" />
-        </section>
+
+        <section>{<Video className="videos" />}</section>
+      </div>
+      <div>
+        <Comments />
       </div>
     </>
   );

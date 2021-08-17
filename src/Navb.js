@@ -2,14 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineShoppingCart, AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
-import { GiLips, GiLipstick } from "react-icons/gi";
+import { GiLips, GiLipstick, GiEyeOfHorus } from "react-icons/gi";
 import { ImCart } from "react-icons/im";
 import { Link, useHistory } from "react-router-dom";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
-function Navb({ count, setCount }) {
+function Navb({ count }) {
   const [show, setShow] = useState(false);
   const divCont = useRef(null);
   const list = useRef(null);
@@ -30,8 +30,16 @@ function Navb({ count, setCount }) {
   return (
     <nav className="nav-bar">
       <div className="nav-header">
-        <h2 className="nav-h" style={{ color: "white" }}>
-          Nancy's Cosmetics
+        <h2
+          className="nav-h"
+          style={{
+            color: "darkred",
+            fontFamily: "Brush Script MT",
+            fontSize: "40px",
+            paddingLeft: "2rem",
+          }}
+        >
+          Nancy's Cosmetics <GiEyeOfHorus />
         </h2>
         <div className="shopping-count">
           <Badge color="secondary" badgeContent={count}>

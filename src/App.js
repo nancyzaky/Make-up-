@@ -40,24 +40,24 @@ function App() {
   const [count, setCount] = useState(null);
 
   useEffect(() => {
+    console.log(cart);
     fetch("http://localhost:4000/cart")
       .then((resp) => resp.json())
       .then((data) => {
-        setCount(data.length);
+        let tot = 0;
+        data.forEach((item) => {
+          tot += item.quantity;
+        });
+        setCount(tot);
       });
   }, []);
   return (
     <>
-      <Navb count={count} setCount={setCount} />
+      <Navb count={count} />
       <ScrollToTop />
 
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <MainApp />}
-          // cart={cart} setCart={setCart} />}
-        />
+        <Route exact path="/" render={() => <MainApp />} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route
@@ -72,8 +72,15 @@ function App() {
           )}
         />
         <Route path="/mybrand/:id">
-          <Brand brands={brands} count={count} setCount={setCount} />
+          <Brand
+            brands={brands}
+            count={count}
+            setCount={setCount}
+            cart={cart}
+            setCart={setCart}
+          />
         </Route>
+
         <Route path="/search">
           <SearchResult />
         </Route>

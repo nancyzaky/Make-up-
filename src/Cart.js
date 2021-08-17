@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { FaOpencart } from "react-icons/fa";
 import CartItem from "./CartItem";
 import Loading from "./Loading";
+import Alert from "./Alert";
 // function Cart(props) {
 //   console.log(props.cart);
 //   let tot = 0;
@@ -40,71 +41,96 @@ import Loading from "./Loading";
 // }
 
 const Cart = ({ count, setCount, cart, setCart }) => {
-  console.log(cart);
   const history = useHistory();
   const [tot, setTot] = useState(0);
   const [load, setIsLoad] = useState(false);
+  const [alertRed, setAlertRed] = useState({
+    show: false,
+    type: "",
+    message: "",
+  });
   const fetchUrl = () => {
     setIsLoad(true);
     fetch("http://localhost:4000/cart")
       .then((resp) => resp.json())
       .then((data) => {
-        setIsLoad(false);
-        setCart(data);
-        const total = data.map((item) => {
-          return parseInt(item.price);
-        });
-        const reducer = (accumulator, currentValue) =>
-          accumulator + currentValue;
+        console.log(data);
+        if (data.length > 0) {
+          console.log(data);
+          setIsLoad(false);
+          setCart(data);
+          const total = data.map((item) => {
+            if (item.quantity === 1) {
+              return parseInt(item.price);
+            } else {
+              return parseInt(item.price * item.quantity);
+            }
+          });
 
-        setTot(total.reduce(reducer));
-        console.log(total);
-        //setCount(total.length);
+          const reducer = (accumulator, currentValue) =>
+            accumulator + currentValue;
+
+          setTot(total.reduce(reducer));
+          console.log(total);
+          //setCount(total.length);
+        }
       });
   };
   useEffect(() => {
     fetchUrl();
   }, [setCart, setTot]);
-
   const handleClick = (e) => {
     e.preventDefault();
     history.push("/");
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setAlertRed({ show: false, message: "", type: "" });
+    }, 4000);
+  }, [alertRed]);
   return (
     <>
-      <span style={{ textAlign: "center" }}>
-        <FaOpencart style={{ color: "red", fontSize: "70px" }} />
-      </span>
-      <h1 style={{ "text-align": "center" }}>Shopping Cart</h1>
-      {load && <Loading />}
-      <section>
-        <ul>
-          {cart.map((item) => {
-            return (
-              <li key={item.id}>
-                <CartItem
-                  item={item}
-                  cart={cart}
-                  setCart={setCart}
-                  tot={tot}
-                  setTot={setTot}
-                  count={count}
-                  setCount={setCount}
-                />
-              </li>
-            );
-          })}
-        </ul>
-        <hr style={{ width: "70rem", color: "black" }}></hr>
-        {/* <button type="submit" onClick={handleClick}>
+      <div style={{ height: "3000px" }}>
+        <h1 style={{ "text-align": "center" }}>
+          Shopping Cart
+          <span style={{ textAlign: "center" }}>
+            <FaOpencart style={{ color: "red", fontSize: "70px" }} />
+          </span>
+        </h1>
+
+        {load && <Loading />}
+        <section>
+          {alertRed.show && <Alert {...alertRed} />}
+
+          <ul>
+            {cart.map((item) => {
+              return (
+                <li key={item.id}>
+                  <CartItem
+                    item={item}
+                    cart={cart}
+                    setCart={setCart}
+                    tot={tot}
+                    setTot={setTot}
+                    count={count}
+                    setCount={setCount}
+                    setAlertRed={setAlertRed}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+          <hr style={{ width: "70rem", color: "black" }}></hr>
+          {/* <button type="submit" onClick={handleClick}>
           submit
 
         </button> */}
-        <div style={{ textAlign: "center" }}>
-          <h1>Total</h1>
-          <p>${tot}</p>
-        </div>
-      </section>
+          <div style={{ textAlign: "center" }}>
+            <h1>Total</h1>
+            <p>${tot}</p>
+          </div>
+        </section>
+      </div>
     </>
   );
 };
