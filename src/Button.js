@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import picsUrl from "./pics";
-import Card from "react-bootstrap/Card";
-function Button(props) {
-  const [classn, setClassn] = useState("");
-  const { name, setBrand, brands, index, photo } = props;
+// import picsUrl from "./pics";
+// import Card from "react-bootstrap/Card";
+const Button = ({ name, index, photo }) => {
+  const [classname, setClassname] = useState("");
 
   return (
     <>
       <div
-        className={`menu ${classn}`}
+        className={`menu ${classname}`}
         onMouseOver={() => {
-          setClassn("shad");
+          setClassname("shad");
         }}
         onMouseOut={() => {
-          setClassn("");
+          setClassname("");
         }}
       >
         <Link to={`/mybrand/${index}`}>
@@ -22,12 +21,16 @@ function Button(props) {
         </Link>
         <section>
           <Link to={`/mybrand/${index}`}>
-            <img src={photo} style={{ height: "300px", width: "300px" }} />
+            <img
+              src={photo}
+              style={{ height: "300px", width: "300px" }}
+              alt={name}
+            />
           </Link>
         </section>
       </div>
     </>
   );
-}
+};
 
 export default Button;

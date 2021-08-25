@@ -1,22 +1,31 @@
 {
   "cart": [
     {
-      "id": 560,
-      "image": "https://www.smashbox.com/media/images/products/388x396/sbx_sku_61636_388x396_0.jpg",
-      "name": "Bronze Lights",
-      "brand": "smashbox",
-      "quantity": 1,
-      "price": "34.0",
-      "shade": "WARM MATTE"
+      "id": 995,
+      "image": "https://www.nyxcosmetics.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-cpd-nyxusa-master-catalog/default/dwa4949d3a/ProductImages/Eyes/Big_And_Loud_Lash_Primer/bigandloudlashprimer_alt1.jpg?sw=390&sh=390&sm=fit",
+      "name": "Big & Loud Lash Primer",
+      "brand": "nyx",
+      "quantity": 4,
+      "price": "7.0",
+      "shade": "PLEASE SELECT SHADE BEFORE CHECK OUT"
     },
     {
-      "id": 557,
-      "image": "https://www.smashbox.com/media/images/products/388x396/sbx_sku_69716_388x396_0.jpg",
-      "name": "L.A. Lights Palette",
-      "brand": "smashbox",
+      "id": 982,
+      "image": "https://www.nyxcosmetics.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-cpd-nyxusa-master-catalog/default/dw837424ec/ProductImages/2017/Eyes/Build_Em_Up_Brow_Powder/buildemupbrowpowder_main.jpg?sw=390&sh=390&sm=fit",
+      "name": "Build 'Em Up Brow Powder",
+      "brand": "nyx",
       "quantity": 1,
-      "price": "35.0",
-      "shade": "PLEASE SELECT SHADE Befor CHECK OUT"
+      "price": "8.0",
+      "shade": "PLEASE SELECT SHADE BEFORE CHECK OUT"
+    },
+    {
+      "id": 971,
+      "image": "https://www.nyxcosmetics.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-cpd-nyxusa-master-catalog/default/dw3f349e2f/ProductImages/Eyes/Tame_And_Frame_Brow_Pomade/tameandframebrowpomade_main.jpg?sw=390&sh=390&sm=fit",
+      "name": "Tame & Frame Brow Pomade",
+      "brand": "nyx",
+      "quantity": 1,
+      "price": "7.0",
+      "shade": "PLEASE SELECT SHADE BEFORE CHECK OUT"
     }
   ],
   "people": [

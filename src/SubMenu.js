@@ -1,10 +1,8 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { SearchContext } from "./SearchContext";
-import { MdArrowDropUp } from "react-icons/md";
-import contactData from "./contact-data";
 
 const SubMenu = () => {
-  const { openSubMenu, isSubMenuOpen, setIsSubMenuOpen, location, links } =
+  const { isSubMenuOpen, setIsSubMenuOpen, location, links } =
     useContext(SearchContext);
   const [columns, setColumns] = useState("col-1");
   const menuContainer = useRef();

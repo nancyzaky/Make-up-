@@ -9,7 +9,6 @@ const app = firebase.initializeApp({
   messagingSenderId: "108859881560",
   appId: "1:108859881560:web:4ae2c2ff669ef414bdf22d",
 });
-console.log(app.auth());
 
 export const auth = app.auth();
 export default app;

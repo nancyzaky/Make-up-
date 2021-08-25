@@ -1,40 +1,34 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Button, Card, Container } from "react-bootstrap";
-
-// function Signup() {
-//   return (
-//     <>
-//       <h1
-//         style={{
-//           "font-size": "bold",
-//           "margin-left": "45%",
-//         }}
-//       >
-//         Sign Up
-//       </h1>
-//       <div className="signup-form">
-//         <form type="submit">
-//           <label htmlFor="name">Name: </label>
-//           <input type="text" name="name" value="" id="name"></input>
-//           <label htmlFor="email">Email: </label>
-//           <input type="text" name="email" value="" id="email"></input>
-//           <label htmlFor="password">PassWord: </label>
-//           <input type="text" name="password" value="" id="password"></input>
-//           <button type="submit">Sign Up</button>
-//         </form>
-//       </div>
-//     </>
-//   );
-// }
+import { Form, Button, Card, Container, Alert } from "react-bootstrap";
+import { useAuth } from "./AuthContext";
 
 function Signup() {
+  const { signup, currentUser } = useAuth();
   const history = useHistory();
-  const name = useRef();
-  const email = useRef();
-  const password = useRef();
-  const passwordConfirm = useRef();
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  async function handleSub(e) {
+    e.preventDefault();
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("passwords dont match");
+    }
+    try {
+      setError("");
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+      history.push("/");
+    } catch {
+      console.log(error);
+      setError("failed to create an account");
+    }
+    setLoading(false);
+  }
   return (
     <>
       <h1
@@ -45,31 +39,23 @@ function Signup() {
       >
         Sign Up
       </h1>
-      <div className="signup-form" style={{ "max-width": "400px" }}>
-        <Container
+      {error && <Alert variant="danger">{error}</Alert>}
+      <div className="signup-form" style={{ maxWidth: "400px" }}>
+        <div
           style={{
-            "min-height": "100vh",
-            "align-content": "center",
-            "justify-content": "center",
+            minHeight: "100vh",
+            alignContent: "center",
+            justifyContent: "center",
           }}
         >
           <Card>
             <Card.Body>
-              <Form
-                onSubmit={() => {
-                  history.push("/");
-                }}
-              >
-                <Form.Group id="name">
-                  <Form.Label>Name:</Form.Label>
-                  <Form.Control type="name" ref={name} required></Form.Control>
-                </Form.Group>
-
+              <Form onSubmit={handleSub}>
                 <Form.Group id="email">
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
                     type="email"
-                    ref={email}
+                    ref={emailRef}
                     required
                   ></Form.Control>
                 </Form.Group>
@@ -78,7 +64,7 @@ function Signup() {
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
                     type="password"
-                    ref={password}
+                    ref={passwordRef}
                     required
                   ></Form.Control>
                 </Form.Group>
@@ -87,21 +73,27 @@ function Signup() {
                   <Form.Label>Confirm Password:</Form.Label>
                   <Form.Control
                     type="password"
-                    ref={passwordConfirm}
+                    ref={passwordConfirmRef}
                     required
                   ></Form.Control>
                 </Form.Group>
                 <Button
+                  disabled={loading}
                   type="submit"
                   className="w-100"
-                  style={{ "margin-top": "2.5rem" }}
+                  style={{ marginTop: "2.5rem" }}
                 >
                   Sign Up
                 </Button>
               </Form>
             </Card.Body>
           </Card>
-        </Container>
+        </div>
+        <section>
+          <p>
+            Already have an account?<Link to="/login">Log In</Link>
+          </p>
+        </section>
       </div>
     </>
   );

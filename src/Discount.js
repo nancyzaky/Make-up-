@@ -1,26 +1,8 @@
-import React, { useState, useEffect } from "react";
-import contactData from "./contact-data";
+import React from "react";
 
-const Comments = () => {
-  const [people, setPeople] = useState([]);
-  const [index, setIndex] = useState(0);
-  const [person, setPerson] = useState(people[index]);
-  console.log(person);
-  const fetchUrl = () => {
-    fetch("http://localhost:4000/people")
-      .then((resp) => resp.json())
-      .then((data) => {
-        setPeople(data);
-      });
-  };
-  useEffect(() => {
-    fetchUrl();
-  }, []);
+const Discount = () => {
   return (
     <>
-      {/* <div>
-        <h1></h1>
-      </div> */}
       <div
         className={`commentsbg shad`}
         style={{
@@ -45,7 +27,7 @@ const Comments = () => {
           <label htmlFor="comment" style={{ fontWeight: "bold" }}></label>
           <input
             type="text"
-            placeHolder="Email"
+            placeholder="Email"
             style={{
               width: "80%",
               height: "40px",
@@ -63,4 +45,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default Discount;

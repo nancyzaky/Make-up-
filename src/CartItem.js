@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { BsTrash } from "react-icons/bs";
-import Alert from "./Alert";
 const CartItem = ({
   item,
   cart,
@@ -11,15 +10,15 @@ const CartItem = ({
   setCount,
   setAlertRed,
 }) => {
-  const { id, image, price, name, brand, quantity, shade } = item;
+  const { id, image, price, name, quantity, shade } = item;
   const [val, setVal] = useState(quantity);
 
   return (
     <>
-      <ul className="cart-item" key={id}>
-        <li className="item-list">
+      <div className="cart-item">
+        <section className="item-list">
           <img src={image} alt={name} className="cart-img" />
-          <li>
+          <section>
             <h3 className="cart-item-name">Product Brand: {name}</h3>
             <h3 className="cart-item-price">product price: ${price * val}</h3>
             <h6>shade: {shade}</h6>
@@ -58,10 +57,7 @@ const CartItem = ({
                     body: JSON.stringify({ quantity: changedVal }),
                   });
 
-                  //console.log(e.target, refVal.current.value);
-
                   setVal(e.target.value);
-                  //setCount(count + (refVal.current));
                 }
               }}
             ></input>
@@ -69,21 +65,20 @@ const CartItem = ({
               className="btn"
               onClick={() => {
                 console.log(count);
+                console.log(item.quantity, item);
+                setCount(count - val);
+
                 fetch(`http://localhost:4000/cart/${id}`, {
                   method: "DELETE",
                 });
                 console.log(cart);
+
                 setCart(
                   cart.filter((product) => {
                     return product.id !== item.id;
                   })
                 );
                 setTot(tot - parseInt(item.price * val));
-                console.log(count);
-                setCount(() => {
-                  return count - item.quantity;
-                });
-                console.log(count);
 
                 setAlertRed({
                   show: true,
@@ -94,9 +89,9 @@ const CartItem = ({
             >
               Remove from cart <BsTrash />
             </button>
-          </li>
-        </li>
-      </ul>
+          </section>
+        </section>
+      </div>
     </>
   );
 };

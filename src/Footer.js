@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { Route } from "react-router-dom";
-import Contact from "./contact-data";
 import SubMenu from "./SubMenu";
 import { SearchContext } from "./SearchContext";
 

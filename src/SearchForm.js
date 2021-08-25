@@ -1,38 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { GiLips } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
 import SearchResult from "./SearchResult";
 import { useHistory } from "react-router-dom";
 import { SearchContext } from "./SearchContext";
-import Loading from "./Loading";
 
 const SearchForm = () => {
-  const {
-    val,
-    setVal,
-    brand,
-    setBrand,
-    data,
-    setSearchData,
-    category,
-    setCategory,
-  } = useContext(SearchContext);
+  const { setVal, setBrand, category, val, brand, setCategory } =
+    useContext(SearchContext);
 
   const history = useHistory();
 
   const handleSub = (e) => {
     e.preventDefault();
-    history.push("/search");
+    history.push(
+      `/search?brand=${brand}&product_category=${category}&product_type=${val}`
+    );
 
-    fetch(
-      `http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brand}&product_category=${category}&product_type=${val} `
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
-        setSearchData(data);
-      });
     setVal("");
     setBrand("");
+    setCategory("");
   };
   return (
     <>
@@ -50,7 +37,7 @@ const SearchForm = () => {
               style={{ width: "60%" }}
               type="text"
               name="search"
-              placeHolder="e.g. Lipstick "
+              placeholder="e.g. Lipstick "
               value={val}
               onChange={(e) => {
                 setVal(e.target.value);
@@ -63,7 +50,7 @@ const SearchForm = () => {
               style={{ width: "60%" }}
               type="text"
               name="searchbrand"
-              placeHolder="e.g. Stila"
+              placeholder="e.g. Stila"
               value={brand}
               onChange={(e) => {
                 setBrand(e.target.value);
@@ -76,7 +63,7 @@ const SearchForm = () => {
               style={{ width: "60%" }}
               type="text"
               name="category"
-              placeHolder="e.g. powder or cream"
+              placeholder="e.g. powder or cream"
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
@@ -101,7 +88,6 @@ const SearchForm = () => {
           </form>
         </div>
       </div>
-      {/* <hr style={{ width: "60rem", color: "black", marginTop: "4rem" }} /> */}
     </>
   );
 };

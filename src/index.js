@@ -3,16 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { SearchProvider } from "./SearchContext";
+import { AuthProvider } from "./AuthContext";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-// import reportWebVitals from "./reportWebVitals";
 const Routing = () => {
   return (
     <Router>
-      <SearchProvider>
-        <App />
-      </SearchProvider>
+      <AuthProvider>
+        <SearchProvider>
+          <App />
+        </SearchProvider>
+      </AuthProvider>
     </Router>
   );
 };

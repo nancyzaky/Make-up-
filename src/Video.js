@@ -25,7 +25,9 @@ const Video = () => {
           </li>
           <br />
           <li>
-            <ReactPlayer url="https://www.youtube.com/watch?v=InnSv2ZRaH8" />
+            <div>
+              <ReactPlayer url="https://www.youtube.com/watch?v=InnSv2ZRaH8" />
+            </div>
           </li>
         </ul>
       </div>

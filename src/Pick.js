@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import picks from "./picks";
-import { GrPrevious } from "react-icons/gr";
-import { GrNext } from "react-icons/gr";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 function Pick() {
   const [items, setItems] = useState(picks);

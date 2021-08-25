@@ -4,7 +4,7 @@ import Alert from "./Alert";
 import { BsCircle } from "react-icons/bs";
 
 function showLess(str) {
-  let newstr = str.split(" ");
+  // let newstr = str.split(" ");
   let indext = str.indexOf("."); //Ingredients
   let indexCapital = str.indexOf("."); //INGREDIENTS
   let result = str.substring(0, indext); //indext
@@ -12,72 +12,28 @@ function showLess(str) {
 
   return result ? result : resultCapital;
 }
-// function fetchdata(card) {
-//   console.log(card);
-// }
-function Card({ product, count, setCount, cart, setCart }) {
+
+function Card({ product, addToCart }) {
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
   const [readMore, setReadMore] = useState(false);
-  const [shade, setShade] = useState("PLEASE SELECT SHADE Befor CHECK OUT");
+  const [shade, setShade] = useState("PLEASE SELECT SHADE BEFORE CHECK OUT");
   const handleRadio = (e) => {
     console.log(e.currentTarget.value);
     setShade(e.currentTarget.value);
   };
   const handleClick = () => {
-    setAlert({ show: true, message: "Item added to cart", type: "success" });
-    const itemExists = cart.filter((item) => {
-      return item.id === product.id;
-    });
-    console.log(itemExists);
-    if (itemExists.length === 0) {
-      let newObj = {
-        id: product.id,
-        image: product.image_link,
-        name: product.name,
-        brand: product.brand,
-        quantity: 1,
-        price: product.price,
-        shade: shade,
-      };
-      fetch("http://localhost:4000/cart", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newObj),
-      });
-      setCart([...cart, newObj]);
-    } else {
-      let updateQuantity = itemExists[0].quantity;
-      let newItem = { ...itemExists[0], quantity: (updateQuantity += 1) };
-      console.log(newItem);
-      fetch(`http://localhost:4000/cart/${newItem.id}`, {
-        method: "PATCH",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ quantity: (updateQuantity += 1) }),
-      });
-      const updatedCart = cart.filter((item) => {
-        return item.id !== newItem.id;
-      });
-      setCart([...updatedCart, newItem]);
-    }
-    setCount(() => {
-      return count++;
-    });
+    addToCart(product, shade, setAlert);
   };
   useEffect(() => {
-    setTimeout(() => {
+    const displayAlert = setTimeout(() => {
       setAlert({ show: false, message: "", type: "" });
     }, 4000);
   }, [alert]);
 
   return (
     <>
-      {/* <h3>{item.brand}</h3> */}
       <div
         className="shad"
-        key={product.id}
         style={{ justifyContent: "center", textAlign: "center" }}
       >
         <h1>{product.brand}</h1>
@@ -97,11 +53,12 @@ function Card({ product, count, setCount, cart, setCart }) {
         <h2>${product.price !== "0.0" ? product.price : 20}</h2>
 
         <h5>Shades</h5>
-        <ul>
-          {product.product_colors.map((item) => {
+        <div>
+          {product.product_colors.map((item, index) => {
             const newColor = item.hex_value;
             return (
               <span
+                key={index}
                 style={{ backgroundColor: "transparent", padding: "0.4rem" }}
               >
                 <BsCircle
@@ -110,7 +67,7 @@ function Card({ product, count, setCount, cart, setCart }) {
               </span>
             );
           })}
-        </ul>
+        </div>
         <div
           style={{
             marginTop: "2rem",
@@ -155,32 +112,9 @@ function Card({ product, count, setCount, cart, setCart }) {
           style={{ margin: "1rem 2rem" }}
           className="btn"
           onClick={handleClick}
-          // onClick={() => {
-          //   const newObj = {
-          //     img: product.image_link,
-          //     name: product.brand,
-          //     price: product.price,
-          //     quantity: 1,
-          //   };
-          //   fetch("http://localhost:4000/cart", {
-          //     method: "POST",
-          //     headers: { "Content-type": "application/json" },
-          //     body: JSON.stringify(newObj),
-          //   });
-          //   console.log(count);
-          //   fetch("http://localhost:4000/cart")
-          //     .then((resp) => resp.json())
-          //     .then((data) => {
-          //       return setCount(data.length);
-          //     });
-
-          //   console.log(count);
-          // }}
         >
           Add To Cart <AiOutlineShoppingCart></AiOutlineShoppingCart>
         </button>
-
-        {/* <hr style={{ width: "60rem", color: "black", marginTop: "4rem" }} /> */}
       </div>
     </>
   );

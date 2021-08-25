@@ -1,32 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
-import { AiOutlineShoppingCart, AiOutlineMenuUnfold } from "react-icons/ai";
-import { FaUsers } from "react-icons/fa";
-import { BiUserCircle } from "react-icons/bi";
-import { GiLips, GiLipstick, GiEyeOfHorus } from "react-icons/gi";
-import { ImCart } from "react-icons/im";
+import { GiEyeOfHorus } from "react-icons/gi";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { Link, useHistory } from "react-router-dom";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { links } from "./data";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useAuth } from "./AuthContext";
 
 function Navb({ count }) {
+  const { logout, currentUser } = useAuth();
   const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
   const divCont = useRef(null);
   const list = useRef(null);
   const history = useHistory();
-  useEffect(() => {
-    // console.log(currentHeight);
 
+  async function handleLogOut(e) {
+    e.preventDefault();
+    try {
+      setError("");
+      logout();
+    } catch {
+      setError("failed to logout");
+      history.push("/login");
+    }
+  }
+  useEffect(() => {
     const currentHeight = list.current.getBoundingClientRect().height;
     if (show) {
-      console.log(currentHeight);
       divCont.current.style.height = `${currentHeight}px`;
     } else {
       divCont.current.style.height = `0px`;
     }
   }, [show]);
 
-  // console.log(list.current.getBoundingClientRect().height);
   return (
     <nav className="nav-bar">
       <div className="nav-header">
@@ -34,9 +41,9 @@ function Navb({ count }) {
           className="nav-h"
           style={{
             color: "darkred",
-            fontFamily: "Brush Script MT",
+
             fontSize: "40px",
-            paddingLeft: "2rem",
+            paddingLeft: "1rem",
           }}
         >
           Nancy's Cosmetics <GiEyeOfHorus />
@@ -48,7 +55,7 @@ function Navb({ count }) {
               onClick={() => {
                 history.push("/mycart");
               }}
-            />{" "}
+            />
           </Badge>
         </div>
         <button
@@ -65,54 +72,18 @@ function Navb({ count }) {
 
       <div className="menu-items-container" ref={divCont}>
         <ul className="menu-items" ref={list}>
-          <li className="menu-item">
-            <Link to="/" className="tag">
-              Home
-              <GiLips
-                style={{
-                  "font-size": "24px",
-                  "padding-left": "1rem",
-                  "padding-right": "1rem",
-                }}
-              ></GiLips>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link to="/mycart" className="tag">
-              shopping cart
-              <AiOutlineShoppingCart
-                style={{
-                  "font-size": "24px",
-                  "padding-left": "1rem",
-                  "padding-right": "1rem",
-                }}
-              ></AiOutlineShoppingCart>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link to="/login" className="tag">
-              Log In
-              <BiUserCircle
-                style={{
-                  "font-size": "24px",
-                  "padding-left": "1rem",
-                  "padding-right": "1rem",
-                }}
-              ></BiUserCircle>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link to="/signup" className="tag">
-              sign up
-              <FaUsers
-                style={{
-                  "font-size": "24px",
-                  "padding-left": "1rem",
-                  "padding-right": "1rem",
-                }}
-              ></FaUsers>
-            </Link>
-          </li>
+          {links.map((link) => {
+            return (
+              <>
+                <li className="menu-item" key={link.id}>
+                  <Link to={link.path} className="tag">
+                    {link.text}
+                    {link.icon}
+                  </Link>
+                </li>
+              </>
+            );
+          })}
         </ul>
       </div>
     </nav>
