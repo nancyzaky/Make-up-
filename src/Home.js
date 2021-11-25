@@ -14,6 +14,7 @@ const Home = () => {
         <h4>Our Favorite Picks</h4>
         <p>----------</p>
       </section>
+      
       <Pick />
       <MakeupList />
     </>

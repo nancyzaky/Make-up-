@@ -18,10 +18,10 @@ const Cart = ({ count, setCount, cart, setCart }) => {
     fetch("http://localhost:4000/cart")
       .then((resp) => resp.json())
       .then((data) => {
-        setIsLoad(false);
         if (data.length > 0) {
           console.log(data);
           setCart(data);
+          setIsLoad(false);
           const total = data.map((item) => {
             return parseInt(item.price * item.quantity);
           });
@@ -42,7 +42,6 @@ const Cart = ({ count, setCount, cart, setCart }) => {
     const alertMessage = setTimeout(() => {
       setAlertRed({ show: false, message: "", type: "" });
     }, 4000);
-    return clearTimeout(alertMessage);
   }, [alertRed]);
   return (
     <>

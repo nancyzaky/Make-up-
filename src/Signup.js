@@ -27,6 +27,7 @@ function Signup() {
       console.log(error);
       setError("failed to create an account");
     }
+
     setLoading(false);
   }
   return (

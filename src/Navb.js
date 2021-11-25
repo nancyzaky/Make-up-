@@ -46,7 +46,7 @@ function Navb({ count }) {
             paddingLeft: "1rem",
           }}
         >
-          Nancy's Cosmetics <GiEyeOfHorus />
+          Cosmetics
         </h2>
         <div className="shopping-count">
           <Badge color="secondary" badgeContent={count}>
